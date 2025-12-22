@@ -1186,14 +1186,14 @@
 
         // APY Dashboard - Fetch pool data from DexScreener
         const DEX_LINKS = {
-            'Uniswap': 'https://app.uniswap.org/add/v2/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
-            'SushiSwap': 'https://www.sushi.com/pool/add?chainId=8453&token0=ETH&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e',
-            'Aerodrome': 'https://aerodrome.finance/deposit?token0=eth&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e',
-            'BaseSwap': 'https://baseswap.fi/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
-            'PancakeSwap': 'https://pancakeswap.finance/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e?chain=base',
-            'Alienbase': 'https://app.alienbase.xyz/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
-            'SwapBased': 'https://swapbased.finance/#/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
-            'DackieSwap': 'https://www.dackieswap.xyz/add?chain=base&token0=ETH&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e'
+            'uniswap': 'https://app.uniswap.org/add/v2/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e?chain=base',
+            'sushiswap': 'https://www.sushi.com/pool/add?chainId=8453&token0=ETH&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'aerodrome': 'https://aerodrome.finance/deposit?token0=eth&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'baseswap': 'https://baseswap.fi/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'pancakeswap': 'https://pancakeswap.finance/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e?chain=base',
+            'alienbase': 'https://app.alienbase.xyz/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'swapbased': 'https://swapbased.finance/#/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'dackieswap': 'https://www.dackieswap.xyz/add?chain=base&token0=ETH&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e'
         };
 
         async function fetchAPYData() {
@@ -1242,12 +1242,13 @@
 
             container.innerHTML = pools.map(pool => {
                 const apyClass = pool.apy > 100 ? 'apy-high' : pool.apy > 20 ? 'apy-medium' : 'apy-low';
-                const dexName = pool.dex.replace('Uniswap_v2', 'Uniswap').replace('Pancakeswap', 'PancakeSwap');
-                const addLink = DEX_LINKS[dexName] || pool.url;
+                const dexKey = pool.dex.toLowerCase().replace(/[\s_-]/g, '');
+                const addLink = DEX_LINKS[dexKey] || DEX_LINKS[pool.dex.toLowerCase()] || `https://dexscreener.com/base/${pool.dex.toLowerCase()}`;
+                const displayName = pool.dex.charAt(0).toUpperCase() + pool.dex.slice(1).replace('_v2', '').replace('_', ' ');
                 
                 return `
                     <div class="apy-row">
-                        <span class="apy-col apy-dex">${dexName}</span>
+                        <span class="apy-col apy-dex">${displayName}</span>
                         <span class="apy-col apy-value">$${formatNumber(pool.liquidity)}</span>
                         <span class="apy-col apy-value">$${formatNumber(pool.volume24h)}</span>
                         <span class="apy-col apy-value">$${formatNumber(pool.fees24h)}</span>
