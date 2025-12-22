@@ -1186,14 +1186,14 @@
 
         // APY Dashboard - Fetch pool data from DexScreener
         const DEX_LINKS = {
-            'uniswap': 'https://app.uniswap.org/add/v2/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e?chain=base',
-            'sushiswap': 'https://www.sushi.com/pool/add?chainId=8453&token0=ETH&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'uniswap': 'https://app.uniswap.org/positions/create/v2?currencyA=ETH&currencyB=0x36b712A629095234F2196BbB000D1b96C12Ce78e&chain=base',
+            'sushiswap': 'https://www.sushi.com/base/pool/v2/add?token0=NATIVE&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e',
             'aerodrome': 'https://aerodrome.finance/deposit?token0=eth&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e',
             'baseswap': 'https://baseswap.fi/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
-            'pancakeswap': 'https://pancakeswap.finance/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e?chain=base',
+            'pancakeswap': 'https://pancakeswap.finance/liquidity?chain=base',
             'alienbase': 'https://app.alienbase.xyz/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
             'swapbased': 'https://swapbased.finance/#/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
-            'dackieswap': 'https://www.dackieswap.xyz/add?chain=base&token0=ETH&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e'
+            'dackieswap': 'https://www.dackieswap.xyz/add?chain=base'
         };
 
         async function fetchAPYData() {
