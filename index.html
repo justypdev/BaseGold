@@ -1608,9 +1608,9 @@
                     }
                 }
 
-                // Setup provider and signer
-                burnProvider = new ethers.providers.Web3Provider(window.ethereum);
-                burnSigner = burnProvider.getSigner();
+                // Setup provider and signer (ethers v6 syntax)
+                burnProvider = new ethers.BrowserProvider(window.ethereum);
+                burnSigner = await burnProvider.getSigner();
 
                 // Update UI
                 document.getElementById('burnWalletStatus').textContent = 'Connected: ' + burnUserAddress.slice(0, 6) + '...' + burnUserAddress.slice(-4);
@@ -1634,7 +1634,7 @@
             try {
                 const tokenContract = new ethers.Contract(CONTRACT_ADDRESS, ['function balanceOf(address) view returns (uint256)'], burnProvider);
                 const balance = await tokenContract.balanceOf(burnUserAddress);
-                const formatted = parseFloat(ethers.utils.formatEther(balance)).toFixed(4);
+                const formatted = parseFloat(ethers.formatEther(balance)).toFixed(4);
                 document.getElementById('burnBalance').textContent = formatted;
             } catch (error) {
                 console.error('Error getting balance:', error);
@@ -1674,7 +1674,7 @@
                 const burnABI = ['function burn(uint256 amount)'];
                 const tokenContract = new ethers.Contract(CONTRACT_ADDRESS, burnABI, burnSigner);
                 
-                const amountWei = ethers.utils.parseEther(amountInput);
+                const amountWei = ethers.parseEther(amountInput);
                 
                 document.getElementById('burnTxStatus').textContent = 'Please confirm in your wallet...';
                 
