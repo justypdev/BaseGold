@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BaseGold (BG) — The Future of Digital Currency</title>
+    <meta name="description" content="BaseGold is an ultra-scarce digital asset with only 10,000 tokens — 2,100x more scarce than Bitcoin. Built on Base network with deflationary burn mechanism.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E4BA;
+            --gold-dark: #996515;
+            --black: #0A0A0A;
+            --dark: #111111;
+            --darker: #0D0D0D;
+            --gray: #888888;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Gold shimmer animation */
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gold-text {
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--black);
+            padding: 0.8rem 2rem;
+            border: none;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 20% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--gray);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            margin-bottom: 3rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border: 1px solid var(--gray);
+            font-family: 'Raleway', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite, pulse 3s ease-in-out infinite;
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Scarcity Section */
+        .scarcity {
+            background: var(--darker);
+        }
+
+        .comparison-table {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1fr;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            align-items: center;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: var(--gold);
+        }
+
+        .table-row.highlight {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+        }
+
+        .table-row .asset {
+            font-weight: 500;
+        }
+
+        .table-row .supply {
+            text-align: center;
+            color: var(--gray);
+        }
+
+        .table-row .factor {
+            text-align: right;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+        }
+
+        .table-row.highlight .factor {
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 3rem 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* DEX Section */
+        .dex-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .dex-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .dex-card:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .dex-card span {
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .dex-card .status {
+            display: block;
+            font-size: 0.7rem;
+            color: #4CAF50;
+            margin-top: 0.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Contract Section */
+        .contract-section {
+            background: var(--darker);
+            text-align: center;
+        }
+
+        .contract-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), transparent);
+        }
+
+        .contract-label {
+            font-size: 0.8rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .contract-address {
+            font-family: 'Courier New', monospace;
+            font-size: clamp(0.7rem, 2vw, 1.1rem);
+            color: var(--white);
+            word-break: break-all;
+            padding: 1rem;
+            background: rgba(0,0,0,0.3);
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contract-address:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .copy-hint {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Roadmap */
+        .roadmap {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .roadmap-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .roadmap-phase {
+            flex-shrink: 0;
+            width: 100px;
+            text-align: right;
+        }
+
+        .phase-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+        }
+
+        .phase-status {
+            font-size: 0.7rem;
+            color: #4CAF50;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .roadmap-content {
+            flex: 1;
+            padding-left: 2rem;
+            border-left: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .roadmap-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .roadmap-content p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5%;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-disclaimer {
+            font-size: 0.75rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.6;
+        }
+
+        /* APY Dashboard Styles */
+        .apy-dashboard {
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .apy-header {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .apy-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .apy-row:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .apy-row:last-child {
+            border-bottom: none;
+        }
+
+        .apy-col {
+            font-size: 0.9rem;
+        }
+
+        .apy-dex {
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .apy-value {
+            color: var(--gray);
+        }
+
+        .apy-percent {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .apy-high {
+            color: #4CAF50;
+        }
+
+        .apy-medium {
+            color: var(--gold);
+        }
+
+        .apy-low {
+            color: var(--gray);
+        }
+
+        .apy-add-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .apy-add-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .apy-loading {
+            padding: 3rem;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        .apy-disclaimer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 1.5rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .apy-header, .apy-row {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 0.5rem;
+            }
+            
+            .apy-header .apy-col:nth-child(3),
+            .apy-header .apy-col:nth-child(4),
+            .apy-row .apy-col:nth-child(3),
+            .apy-row .apy-col:nth-child(4) {
+                display: none;
+            }
+        }
+
+        .burn-indicator {
+            font-size: 0.6rem;
+            color: #FF6B35;
+            background: rgba(255, 107, 53, 0.15);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            margin-left: 0.3rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .loading-dots {
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes glowPulse {
+            0% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(212, 175, 55, 0.9), 0 0 50px rgba(212, 175, 55, 0.5); }
+            100% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+        }
+
+        .stat-value.updated {
+            animation: countUp 0.5s ease-out;
+        }
+
+        #scarcity-hero.updated {
+            animation: countUp 0.5s ease-out, glowPulse 2s ease-in-out 3;
+        }
+
+        #burned-amount {
+            color: #FF6B35;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .stat-value {
+                font-size: 1.8rem;
+            }
+
+            .table-row {
+                grid-template-columns: 1.5fr 1fr 1fr;
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .roadmap-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .roadmap-phase {
+                text-align: left;
+                width: auto;
+            }
+
+            .roadmap-content {
+                border-left: none;
+                padding-left: 0;
+                border-top: 1px solid rgba(212, 175, 55, 0.3);
+                padding-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo gold-text">BASEGOLD</div>
+        <ul class="nav-links">
+            <li><a href="#scarcity">Scarcity</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#apy">APY</a></li>
+            <li><a href="#buy">Buy</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+        </ul>
+        <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="buy-btn">Buy $BG</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="particles">
+            <div class="particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; top: 60%; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 80%; top: 30%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 70%; top: 70%; animation-delay: 0.5s;"></div>
+            <div class="particle" style="left: 90%; top: 50%; animation-delay: 1.5s;"></div>
+            <div class="particle" style="left: 5%; top: 80%; animation-delay: 2.5s;"></div>
+            <div class="particle" style="left: 50%; top: 10%; animation-delay: 3s;"></div>
+        </div>
+        
+        <div class="hero-content">
+            <span class="hero-badge">Built on Base Network</span>
+            <h1 class="gold-text">BASEGOLD</h1>
+            <p class="hero-tagline">The Future of Digital Currency</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value" id="total-supply">
+                        <span class="loading-dots">...</span>
+                    </div>
+                    <div class="stat-label">Total Supply <span class="burn-indicator">🔥 Live</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="burned-amount">0</div>
+                    <div class="stat-label">Tokens Burned 🔥</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value gold-text" id="scarcity-hero">2,100x</div>
+                    <div class="stat-label">Scarcer than BTC</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">DEX Listings</div>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="buy-btn">Buy on Uniswap</a>
+                <a href="#contract" class="secondary-btn">View Contract</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scarcity Section -->
+    <section class="scarcity" id="scarcity">
+        <div class="section-header">
+            <h2 class="gold-text">Extreme Scarcity</h2>
+            <p>With only 10,000 tokens ever to exist, BaseGold is mathematically designed for value appreciation.</p>
+        </div>
+
+        <div class="comparison-table">
+            <div class="table-row table-header">
+                <span>Asset</span>
+                <span class="supply">Max Supply</span>
+                <span class="factor">Scarcity</span>
+            </div>
+            <div class="table-row">
+                <span class="asset">Bitcoin (BTC)</span>
+                <span class="supply">21,000,000</span>
+                <span class="factor">1x</span>
+            </div>
+            <div class="table-row">
+                <span class="asset">Ethereum (ETH)</span>
+                <span class="supply">~120,000,000</span>
+                <span class="factor">0.17x</span>
+            </div>
+            <div class="table-row highlight">
+                <span class="asset"><strong>BaseGold (BG)</strong></span>
+                <span class="supply"><strong id="table-supply">10,000</strong></span>
+                <span class="factor" id="scarcity-factor">2,100x</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="section-header">
+            <h2 class="gold-text">Core Features</h2>
+            <p>Built with purpose. Designed for value.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔥</div>
+                <h3>Burn Mechanism</h3>
+                <p>Built-in deflationary mechanism allows tokens to be permanently removed from circulation, ensuring supply only decreases over time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <h3>Staking Platform</h3>
+                <p>Coming soon: Lock your BG tokens to earn rewards. Longer stake periods earn higher APY, reducing circulating supply.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Base Network</h3>
+                <p>Built on Coinbase's Layer 2. Enjoy Ethereum security with near-zero fees and instant transactions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure Contract</h3>
+                <p>Built on OpenZeppelin's battle-tested ERC-20 implementation. Simple, auditable, and follows industry best practices.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buy Section -->
+    <section class="scarcity" id="buy">
+        <div class="section-header">
+            <h2 class="gold-text">Trade on 8 DEXs</h2>
+            <p>BaseGold is available across all major Base network exchanges.</p>
+        </div>
+
+        <div class="dex-grid">
+            <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="dex-card">
+                <span>Uniswap</span>
+                <span class="status">● Live</span>
+            </a>
+            <a href="https://www.sushi.com/swap?chainId=8453&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="dex-card">
+                <span>SushiSwap</span>
+                <span class="status">● Live</span>
+            </a>
+            <a href="https://aerodrome.finance/swap?from=eth&to=0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="dex-card">
+                <span>Aerodrome</span>
+                <span class="status">● Live</span>
+            </a>
+            <a href="https://baseswap.fi/swap" target="_blank" class="dex-card">
+                <span>BaseSwap</span>
+                <span class="status">● Live</span>
+            </a>
+            <a href="https://pancakeswap.finance/swap?chain=base&outputCurrency=0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="dex-card">
+                <span>PancakeSwap</span>
+                <span class="status">● Live</span>
+            </a>
+            <a href="https://app.alienbase.xyz/swap" target="_blank" class="dex-card">
+                <span>Alienbase</span>
+                <span class="status">● Live</span>
+            </a>
+            <a href="https://swapbased.finance/#/swap" target="_blank" class="dex-card">
+                <span>SwapBased</span>
+                <span class="status">● Live</span>
+            </a>
+            <a href="https://www.dackieswap.xyz/swap?chain=base" target="_blank" class="dex-card">
+                <span>DackieSwap</span>
+                <span class="status">● Live</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contract Section -->
+    <section class="contract-section" id="contract">
+        <div class="section-header">
+            <h2 class="gold-text">Contract Address</h2>
+            <p>Verified on BaseScan. Click to copy.</p>
+        </div>
+
+        <div class="contract-box">
+            <div class="contract-label">BG Token Contract (Base Network)</div>
+            <div class="contract-address" onclick="copyContract()" id="contract-addr">
+                0x36b712A629095234F2196BbB000D1b96C12Ce78e
+            </div>
+            <p class="copy-hint" id="copy-hint">Click address to copy</p>
+            <a href="https://basescan.org/address/0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="secondary-btn" style="margin-top: 1rem; display: inline-block;">View on BaseScan</a>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap">
+        <div class="section-header">
+            <h2 class="gold-text">Roadmap</h2>
+            <p>Our journey to becoming the digital gold standard.</p>
+        </div>
+
+        <div class="roadmap">
+            <div class="roadmap-item">
+                <div class="roadmap-phase">
+                    <div class="phase-label">Phase 1</div>
+                    <div class="phase-status">✓ Complete</div>
+                </div>
+                <div class="roadmap-content">
+                    <h4>Launch</h4>
+                    <p>Deploy smart contract on Base. Establish liquidity pools across 8 DEXs. Launch whitepaper and website.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-phase">
+                    <div class="phase-label">Phase 2</div>
+                    <div class="phase-status">In Progress</div>
+                </div>
+                <div class="roadmap-content">
+                    <h4>Growth</h4>
+                    <p>Community building. CoinGecko & CoinMarketCap listings. Partnership development. Social media expansion.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-phase">
+                    <div class="phase-label">Phase 3</div>
+                </div>
+                <div class="roadmap-content">
+                    <h4>Utility</h4>
+                    <p>Launch staking platform with tiered rewards. Implement community governance. Burn events and supply reduction.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-phase">
+                    <div class="phase-label">Phase 4</div>
+                </div>
+                <div class="roadmap-content">
+                    <h4>Ecosystem</h4>
+                    <p>Merchant payment integrations. NFT collection for holders. DeFi protocol integrations. CEX listings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo gold-text">BASEGOLD</div>
+        <div class="social-links">
+            <a href="https://dexscreener.com/base/0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank">DexScreener</a>
+            <a href="https://basescan.org/address/0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank">BaseScan</a>
+            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank">Telegram</a>
+        </div>
+        <p class="footer-disclaimer">
+            Disclaimer: This website is for informational purposes only and does not constitute financial advice. 
+            Cryptocurrency investments carry significant risk. Always do your own research.
+        </p>
+    </footer>
+
+    <!-- APY Dashboard Section -->
+    <section id="apy" class="scarcity">
+        <div class="section-header">
+            <h2 class="gold-text">APY Dashboard</h2>
+            <p>Find the best pools to earn fees. Data updates live from DexScreener.</p>
+        </div>
+
+        <div class="apy-dashboard">
+            <div class="apy-header">
+                <span class="apy-col">DEX</span>
+                <span class="apy-col">Liquidity</span>
+                <span class="apy-col">24h Volume</span>
+                <span class="apy-col">24h Fees</span>
+                <span class="apy-col">Est. APY</span>
+                <span class="apy-col">Action</span>
+            </div>
+            <div id="apy-pools">
+                <div class="apy-loading">Loading pool data...</div>
+            </div>
+        </div>
+        
+        <p class="apy-disclaimer">* APY estimates based on 24h trading fees. Actual returns may vary. Higher APY often means higher risk.</p>
+    </section>
+
+    <!-- Ethers.js for blockchain interaction -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.9.0/ethers.umd.min.js"></script>
+    
+    <script>
+        // Contract details
+        const CONTRACT_ADDRESS = "0x36b712A629095234F2196BbB000D1b96C12Ce78e";
+        const INITIAL_SUPPLY = 10000;
+        const BASE_RPC = "https://mainnet.base.org";
+        
+        // Minimal ERC-20 ABI for totalSupply
+        const ERC20_ABI = [
+            "function totalSupply() view returns (uint256)",
+            "function decimals() view returns (uint8)"
+        ];
+
+        async function fetchTotalSupply() {
+            try {
+                const provider = new ethers.JsonRpcProvider(BASE_RPC);
+                const contract = new ethers.Contract(CONTRACT_ADDRESS, ERC20_ABI, provider);
+                
+                const [totalSupplyRaw, decimals] = await Promise.all([
+                    contract.totalSupply(),
+                    contract.decimals()
+                ]);
+                
+                const totalSupply = Number(ethers.formatUnits(totalSupplyRaw, decimals));
+                const burned = INITIAL_SUPPLY - totalSupply;
+                
+                // Update the display
+                const supplyElement = document.getElementById('total-supply');
+                const burnedElement = document.getElementById('burned-amount');
+                
+                supplyElement.textContent = totalSupply.toLocaleString('en-US', {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                });
+                supplyElement.classList.add('updated');
+                
+                burnedElement.textContent = burned.toLocaleString('en-US', {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                });
+                burnedElement.classList.add('updated');
+                
+                // Update the scarcity table too
+                const tableSupply = document.getElementById('table-supply');
+                const scarcityFactor = document.getElementById('scarcity-factor');
+                const scarcityHero = document.getElementById('scarcity-hero');
+                
+                // Bitcoin has 21M supply, calculate scarcity multiplier
+                const scarcity = Math.round(21000000 / totalSupply);
+                const scarcityFormatted = scarcity.toLocaleString() + 'x';
+                
+                if (tableSupply) {
+                    tableSupply.textContent = totalSupply.toLocaleString('en-US', {
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0
+                    });
+                }
+                
+                if (scarcityFactor) {
+                    scarcityFactor.textContent = scarcityFormatted;
+                }
+                
+                if (scarcityHero) {
+                    scarcityHero.textContent = scarcityFormatted;
+                    scarcityHero.classList.add('updated');
+                }
+                
+                console.log(`✅ Total Supply: ${totalSupply} BG | Burned: ${burned} BG | Scarcity: ${scarcityFormatted}`);
+                
+            } catch (error) {
+                console.error("Error fetching supply:", error);
+                // Fallback to initial supply on error
+                document.getElementById('total-supply').textContent = "10,000";
+                document.getElementById('burned-amount').textContent = "0";
+                document.getElementById('scarcity-hero').textContent = "2,100x";
+            }
+        }
+
+        // Fetch on page load
+        fetchTotalSupply();
+        
+        // Refresh every 30 seconds
+        setInterval(fetchTotalSupply, 30000);
+
+        // APY Dashboard - Fetch pool data from DexScreener
+        const DEX_LINKS = {
+            'Uniswap': 'https://app.uniswap.org/add/v2/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'SushiSwap': 'https://www.sushi.com/pool/add?chainId=8453&token0=ETH&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'Aerodrome': 'https://aerodrome.finance/deposit?token0=eth&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'BaseSwap': 'https://baseswap.fi/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'PancakeSwap': 'https://pancakeswap.finance/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e?chain=base',
+            'Alienbase': 'https://app.alienbase.xyz/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'SwapBased': 'https://swapbased.finance/#/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
+            'DackieSwap': 'https://www.dackieswap.xyz/add?chain=base&token0=ETH&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e'
+        };
+
+        async function fetchAPYData() {
+            try {
+                const response = await fetch('https://api.dexscreener.com/latest/dex/tokens/0x36b712A629095234F2196BbB000D1b96C12Ce78e');
+                const data = await response.json();
+                
+                if (data.pairs && data.pairs.length > 0) {
+                    // Sort by APY (volume/liquidity ratio)
+                    const pools = data.pairs
+                        .filter(p => p.chainId === 'base')
+                        .map(p => {
+                            const liquidity = p.liquidity?.usd || 0;
+                            const volume24h = p.volume?.h24 || 0;
+                            const fees24h = volume24h * 0.003; // Assume 0.3% fee
+                            const apy = liquidity > 0 ? (fees24h * 365 / liquidity) * 100 : 0;
+                            
+                            return {
+                                dex: p.dexId.charAt(0).toUpperCase() + p.dexId.slice(1).replace('_', ' '),
+                                liquidity: liquidity,
+                                volume24h: volume24h,
+                                fees24h: fees24h,
+                                apy: apy,
+                                url: p.url
+                            };
+                        })
+                        .sort((a, b) => b.apy - a.apy);
+                    
+                    renderAPYDashboard(pools);
+                } else {
+                    document.getElementById('apy-pools').innerHTML = '<div class="apy-loading">No pools found</div>';
+                }
+            } catch (error) {
+                console.error('Error fetching APY data:', error);
+                document.getElementById('apy-pools').innerHTML = '<div class="apy-loading">Unable to load pool data</div>';
+            }
+        }
+
+        function renderAPYDashboard(pools) {
+            const container = document.getElementById('apy-pools');
+            
+            if (pools.length === 0) {
+                container.innerHTML = '<div class="apy-loading">No pools found</div>';
+                return;
+            }
+
+            container.innerHTML = pools.map(pool => {
+                const apyClass = pool.apy > 100 ? 'apy-high' : pool.apy > 20 ? 'apy-medium' : 'apy-low';
+                const dexName = pool.dex.replace('Uniswap_v2', 'Uniswap').replace('Pancakeswap', 'PancakeSwap');
+                const addLink = DEX_LINKS[dexName] || pool.url;
+                
+                return `
+                    <div class="apy-row">
+                        <span class="apy-col apy-dex">${dexName}</span>
+                        <span class="apy-col apy-value">$${formatNumber(pool.liquidity)}</span>
+                        <span class="apy-col apy-value">$${formatNumber(pool.volume24h)}</span>
+                        <span class="apy-col apy-value">$${formatNumber(pool.fees24h)}</span>
+                        <span class="apy-col apy-percent ${apyClass}">${pool.apy.toFixed(1)}%</span>
+                        <span class="apy-col"><a href="${addLink}" target="_blank" class="apy-add-btn">Add LP</a></span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(2) + 'K';
+            return num.toFixed(2);
+        }
+
+        // Fetch APY data on load
+        fetchAPYData();
+        
+        // Refresh APY data every 60 seconds
+        setInterval(fetchAPYData, 60000);
+
+        function copyContract() {
+            const address = "0x36b712A629095234F2196BbB000D1b96C12Ce78e";
+            navigator.clipboard.writeText(address).then(() => {
+                document.getElementById('copy-hint').textContent = "✓ Copied to clipboard!";
+                setTimeout(() => {
+                    document.getElementById('copy-hint').textContent = "Click address to copy";
+                }, 2000);
+            });
+        }
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
