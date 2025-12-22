@@ -667,6 +667,44 @@
             opacity: 0.6;
         }
 
+        /* Whitepaper Section */
+        .whitepaper-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .whitepaper-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .wp-item {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .wp-item:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .wp-item h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .wp-item p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
         @media (max-width: 768px) {
             .apy-header, .apy-row {
                 grid-template-columns: 1fr 1fr 1fr;
@@ -764,6 +802,7 @@
         <ul class="nav-links">
             <li><a href="#scarcity">Scarcity</a></li>
             <li><a href="#features">Features</a></li>
+            <li><a href="#whitepaper">Whitepaper</a></li>
             <li><a href="#apy">APY</a></li>
             <li><a href="#buy">Buy</a></li>
             <li><a href="#roadmap">Roadmap</a></li>
@@ -811,6 +850,7 @@
 
             <div class="hero-buttons">
                 <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="buy-btn">Buy on Uniswap</a>
+                <a href="#whitepaper" class="secondary-btn">Whitepaper</a>
                 <a href="#contract" class="secondary-btn">View Contract</a>
             </div>
         </div>
@@ -1004,6 +1044,35 @@
             Cryptocurrency investments carry significant risk. Always do your own research.
         </p>
     </footer>
+
+    <!-- Whitepaper Section -->
+    <section id="whitepaper" class="scarcity">
+        <div class="section-header">
+            <h2 class="gold-text">Whitepaper</h2>
+            <p>Learn about BaseGold's vision, tokenomics, and roadmap.</p>
+        </div>
+
+        <div class="whitepaper-content">
+            <div class="whitepaper-highlights">
+                <div class="wp-item">
+                    <h3>Executive Summary</h3>
+                    <p>BaseGold represents a paradigm shift in digital currency design with only 10,000 tokens — 2,100x more scarce than Bitcoin.</p>
+                </div>
+                <div class="wp-item">
+                    <h3>Tokenomics</h3>
+                    <p>Total supply of 10,000 BG with built-in deflationary burn mechanism. 80% team/development, 20% initial liquidity across 8 DEXs.</p>
+                </div>
+                <div class="wp-item">
+                    <h3>Technology</h3>
+                    <p>Built on Base (Coinbase L2) for Ethereum security with near-zero fees. OpenZeppelin ERC-20 with ERC20Burnable extension.</p>
+                </div>
+                <div class="wp-item">
+                    <h3>Roadmap</h3>
+                    <p>Phase 1: Launch ✓ | Phase 2: Growth & listings | Phase 3: Staking platform | Phase 4: Ecosystem expansion</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- APY Dashboard Section -->
     <section id="apy" class="scarcity">
