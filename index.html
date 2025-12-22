@@ -1389,6 +1389,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.9.0/ethers.umd.min.js"></script>
     
     <script>
+        // Check if ethers loaded
+        if (typeof ethers === 'undefined') {
+            console.error('Ethers.js failed to load');
+        }
+        
         // Contract details
         const CONTRACT_ADDRESS = "0x36b712A629095234F2196BbB000D1b96C12Ce78e";
         const INITIAL_SUPPLY = 10000;
@@ -1584,32 +1589,51 @@
         let burnUserAddress = null;
 
         async function connectBurnWallet() {
-            if (typeof window.ethereum === 'undefined') {
-                alert('Please install MetaMask or another Web3 wallet to use this feature.');
+            // Check for ethereum provider (MetaMask, etc)
+            const ethereum = window.ethereum;
+            
+            if (typeof ethereum === 'undefined') {
+                alert('Please open this page in MetaMask browser or install a Web3 wallet.');
                 return;
             }
 
             try {
+                document.getElementById('burnTxStatus').textContent = 'Connecting...';
+                
                 // Request account access
-                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
                 burnUserAddress = accounts[0];
                 
-                // Check if on Base network (chainId 8453)
-                const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+                // Check if on Base network (chainId 8453 = 0x2105)
+                const chainId = await ethereum.request({ method: 'eth_chainId' });
                 if (chainId !== '0x2105') {
                     try {
-                        await window.ethereum.request({
+                        await ethereum.request({
                             method: 'wallet_switchEthereumChain',
                             params: [{ chainId: '0x2105' }],
                         });
                     } catch (switchError) {
-                        alert('Please switch to Base network in your wallet.');
-                        return;
+                        // If Base not added, add it
+                        if (switchError.code === 4902) {
+                            await ethereum.request({
+                                method: 'wallet_addEthereumChain',
+                                params: [{
+                                    chainId: '0x2105',
+                                    chainName: 'Base',
+                                    nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
+                                    rpcUrls: ['https://mainnet.base.org'],
+                                    blockExplorerUrls: ['https://basescan.org']
+                                }]
+                            });
+                        } else {
+                            alert('Please switch to Base network in your wallet.');
+                            return;
+                        }
                     }
                 }
 
                 // Setup provider and signer (ethers v6 syntax)
-                burnProvider = new ethers.BrowserProvider(window.ethereum);
+                burnProvider = new ethers.BrowserProvider(ethereum);
                 burnSigner = await burnProvider.getSigner();
 
                 // Update UI
@@ -1618,13 +1642,14 @@
                 document.getElementById('burnConnectBtn').disabled = true;
                 document.getElementById('burnInputGroup').style.display = 'block';
                 document.getElementById('burnBtn').style.display = 'block';
+                document.getElementById('burnTxStatus').textContent = '';
 
                 // Get user balance
                 await updateBurnBalance();
 
             } catch (error) {
                 console.error('Error connecting wallet:', error);
-                document.getElementById('burnTxStatus').textContent = 'Error: ' + error.message;
+                document.getElementById('burnTxStatus').textContent = 'Error: ' + (error.message || 'Failed to connect');
             }
         }
 
