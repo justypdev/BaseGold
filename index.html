@@ -262,6 +262,28 @@
             color: var(--gold);
         }
 
+        .hero-social {
+            margin-top: 2rem;
+        }
+
+        .hero-twitter {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #333;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-twitter:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
         /* Floating particles */
         .particles {
             position: absolute;
@@ -592,6 +614,164 @@
             opacity: 0.6;
         }
 
+        /* Burn Section Styles */
+        .burn-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, var(--black) 0%, #1a0a0a 100%);
+            border-top: 2px solid #8B0000;
+        }
+
+        .burn-warning-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .burn-warning-header h2 {
+            color: #ff4444;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .warning-icon {
+            font-size: 2rem;
+        }
+
+        .burn-disclaimer {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            padding: 1.5rem;
+            background: rgba(139, 0, 0, 0.2);
+            border: 1px solid #8B0000;
+            border-radius: 8px;
+            color: #ff6666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .burn-disclaimer ul {
+            margin: 1rem 0 0 1.5rem;
+        }
+
+        .burn-disclaimer li {
+            margin: 0.5rem 0;
+        }
+
+        .burn-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .burn-box {
+            background: rgba(20, 10, 10, 0.8);
+            border: 1px solid #8B0000;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .burn-status {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .burn-connect-btn {
+            background: #333;
+            color: var(--white);
+            border: 1px solid #555;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .burn-connect-btn:hover {
+            background: #444;
+            border-color: var(--gold);
+        }
+
+        .burn-input-group {
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .burn-input-group label {
+            display: block;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .burn-input-group input {
+            width: 100%;
+            padding: 0.8rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 1.2rem;
+            box-sizing: border-box;
+        }
+
+        .burn-input-group input:focus {
+            outline: none;
+            border-color: #8B0000;
+        }
+
+        .burn-balance {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .burn-balance span {
+            color: var(--gold);
+        }
+
+        .burn-btn {
+            background: linear-gradient(135deg, #8B0000, #cc0000);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .burn-btn:hover {
+            background: linear-gradient(135deg, #aa0000, #ee0000);
+            transform: scale(1.02);
+        }
+
+        .burn-btn:disabled {
+            background: #333;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .burn-tx-status {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .burn-footer-note {
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
         /* APY Dashboard Styles */
         .apy-dashboard {
             max-width: 1000px;
@@ -904,6 +1084,10 @@
                 <a href="#whitepaper" class="secondary-btn">Whitepaper</a>
                 <a href="#contract" class="secondary-btn">View Contract</a>
             </div>
+            
+            <div class="hero-social">
+                <a href="https://x.com/BaseGold_BG" target="_blank" class="hero-twitter">𝕏 @BaseGold_BG</a>
+            </div>
         </div>
     </section>
 
@@ -1081,6 +1265,8 @@
         </div>
     </section>
 
+    <!-- Burn Section - Hidden at bottom -->
+
     <!-- Footer -->
     <footer>
         <div class="footer-brand">
@@ -1091,7 +1277,7 @@
             <a href="https://www.geckoterminal.com/base/pools/0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" rel="dofollow">GeckoTerminal</a>
             <a href="https://dexscreener.com/base/0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank">DexScreener</a>
             <a href="https://basescan.org/address/0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank">BaseScan</a>
-            <a href="#" target="_blank">Twitter</a>
+            <a href="https://x.com/BaseGold_BG" target="_blank">Twitter</a>
             <a href="#" target="_blank">Telegram</a>
         </div>
         <p class="footer-disclaimer">
@@ -1155,6 +1341,48 @@
         </div>
         
         <p class="apy-disclaimer">* APY estimates based on 24h trading fees. Actual returns may vary. Higher APY often means higher risk.</p>
+    </section>
+
+    <!-- Burn Section - Hidden at very bottom -->
+    <section id="burn" class="burn-section">
+        <div class="burn-warning-header">
+            <span class="warning-icon">⚠️</span>
+            <h2>Advanced: Burn Tokens</h2>
+            <span class="warning-icon">⚠️</span>
+        </div>
+        
+        <div class="burn-disclaimer">
+            <p><strong>🚨 DANGER ZONE - READ CAREFULLY 🚨</strong></p>
+            <p>Burning tokens is <strong>PERMANENT and IRREVERSIBLE</strong>. Burned tokens are destroyed forever and cannot be recovered by anyone, including the BaseGold team.</p>
+            <p>By using this function, you acknowledge that:</p>
+            <ul>
+                <li>You understand this action cannot be undone</li>
+                <li>You are voluntarily destroying your own tokens</li>
+                <li>BaseGold is not liable for any tokens you burn</li>
+                <li>No refunds or recovery is possible</li>
+            </ul>
+        </div>
+
+        <div class="burn-container">
+            <div class="burn-box">
+                <p class="burn-status" id="burnWalletStatus">Wallet not connected</p>
+                <button id="burnConnectBtn" class="burn-connect-btn" onclick="connectBurnWallet()">Connect Wallet</button>
+                
+                <div class="burn-input-group" id="burnInputGroup" style="display: none;">
+                    <label for="burnAmount">Amount to Burn (BG):</label>
+                    <input type="number" id="burnAmount" placeholder="0.0" step="0.000001" min="0">
+                    <p class="burn-balance">Your Balance: <span id="burnBalance">0</span> BG</p>
+                </div>
+                
+                <button id="burnBtn" class="burn-btn" onclick="burnTokens()" style="display: none;">
+                    🔥 PERMANENTLY BURN TOKENS 🔥
+                </button>
+                
+                <p class="burn-tx-status" id="burnTxStatus"></p>
+            </div>
+        </div>
+        
+        <p class="burn-footer-note">This function reduces the total supply, increasing scarcity for all remaining holders.</p>
     </section>
 
     <!-- Ethers.js for blockchain interaction -->
@@ -1349,6 +1577,127 @@
                 });
             });
         });
+
+        // ========== BURN FUNCTIONALITY ==========
+        let burnProvider = null;
+        let burnSigner = null;
+        let burnUserAddress = null;
+
+        async function connectBurnWallet() {
+            if (typeof window.ethereum === 'undefined') {
+                alert('Please install MetaMask or another Web3 wallet to use this feature.');
+                return;
+            }
+
+            try {
+                // Request account access
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                burnUserAddress = accounts[0];
+                
+                // Check if on Base network (chainId 8453)
+                const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+                if (chainId !== '0x2105') {
+                    try {
+                        await window.ethereum.request({
+                            method: 'wallet_switchEthereumChain',
+                            params: [{ chainId: '0x2105' }],
+                        });
+                    } catch (switchError) {
+                        alert('Please switch to Base network in your wallet.');
+                        return;
+                    }
+                }
+
+                // Setup provider and signer
+                burnProvider = new ethers.providers.Web3Provider(window.ethereum);
+                burnSigner = burnProvider.getSigner();
+
+                // Update UI
+                document.getElementById('burnWalletStatus').textContent = 'Connected: ' + burnUserAddress.slice(0, 6) + '...' + burnUserAddress.slice(-4);
+                document.getElementById('burnConnectBtn').textContent = 'Connected ✓';
+                document.getElementById('burnConnectBtn').disabled = true;
+                document.getElementById('burnInputGroup').style.display = 'block';
+                document.getElementById('burnBtn').style.display = 'block';
+
+                // Get user balance
+                await updateBurnBalance();
+
+            } catch (error) {
+                console.error('Error connecting wallet:', error);
+                document.getElementById('burnTxStatus').textContent = 'Error: ' + error.message;
+            }
+        }
+
+        async function updateBurnBalance() {
+            if (!burnSigner || !burnUserAddress) return;
+            
+            try {
+                const tokenContract = new ethers.Contract(CONTRACT_ADDRESS, ['function balanceOf(address) view returns (uint256)'], burnProvider);
+                const balance = await tokenContract.balanceOf(burnUserAddress);
+                const formatted = parseFloat(ethers.utils.formatEther(balance)).toFixed(4);
+                document.getElementById('burnBalance').textContent = formatted;
+            } catch (error) {
+                console.error('Error getting balance:', error);
+            }
+        }
+
+        async function burnTokens() {
+            const amountInput = document.getElementById('burnAmount').value;
+            if (!amountInput || parseFloat(amountInput) <= 0) {
+                alert('Please enter a valid amount to burn.');
+                return;
+            }
+
+            // Confirm with user
+            const confirmed = confirm(
+                '⚠️ FINAL WARNING ⚠️\n\n' +
+                'You are about to PERMANENTLY BURN ' + amountInput + ' BG tokens.\n\n' +
+                'This action is IRREVERSIBLE. The tokens will be destroyed forever.\n\n' +
+                'Are you absolutely sure you want to proceed?'
+            );
+
+            if (!confirmed) return;
+
+            // Double confirm
+            const doubleConfirmed = confirm(
+                '🔥 LAST CHANCE 🔥\n\n' +
+                'Type OK to confirm you understand these ' + amountInput + ' BG will be gone FOREVER.\n\n' +
+                'Click OK to burn, Cancel to abort.'
+            );
+
+            if (!doubleConfirmed) return;
+
+            try {
+                document.getElementById('burnBtn').disabled = true;
+                document.getElementById('burnTxStatus').textContent = 'Preparing transaction...';
+
+                const burnABI = ['function burn(uint256 amount)'];
+                const tokenContract = new ethers.Contract(CONTRACT_ADDRESS, burnABI, burnSigner);
+                
+                const amountWei = ethers.utils.parseEther(amountInput);
+                
+                document.getElementById('burnTxStatus').textContent = 'Please confirm in your wallet...';
+                
+                const tx = await tokenContract.burn(amountWei);
+                
+                document.getElementById('burnTxStatus').innerHTML = 'Transaction submitted. Waiting for confirmation...<br><a href="https://basescan.org/tx/' + tx.hash + '" target="_blank" style="color: var(--gold);">View on BaseScan</a>';
+                
+                await tx.wait();
+                
+                document.getElementById('burnTxStatus').innerHTML = '🔥 Successfully burned ' + amountInput + ' BG! <br><a href="https://basescan.org/tx/' + tx.hash + '" target="_blank" style="color: var(--gold);">View on BaseScan</a>';
+                document.getElementById('burnAmount').value = '';
+                
+                // Update balances
+                await updateBurnBalance();
+                await loadSupplyData();
+
+            } catch (error) {
+                console.error('Burn error:', error);
+                document.getElementById('burnTxStatus').textContent = 'Error: ' + (error.reason || error.message);
+            } finally {
+                document.getElementById('burnBtn').disabled = false;
+            }
+        }
     </script>
 </body>
 </html>
