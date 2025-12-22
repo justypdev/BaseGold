@@ -88,6 +88,18 @@
             backdrop-filter: blur(10px);
         }
 
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
         .logo {
             font-family: 'Cinzel', serif;
             font-size: 1.8rem;
@@ -531,11 +543,25 @@
             text-align: center;
         }
 
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
         .footer-logo {
             font-family: 'Cinzel', serif;
             font-size: 2rem;
             letter-spacing: 0.2em;
-            margin-bottom: 2rem;
+            margin-bottom: 0;
         }
 
         .social-links {
@@ -798,7 +824,10 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="logo gold-text">BASEGOLD</div>
+        <div class="logo-container">
+            <img src="logo.png" alt="BaseGold" class="nav-logo">
+            <span class="logo gold-text">BASEGOLD</span>
+        </div>
         <ul class="nav-links">
             <li><a href="#scarcity">Scarcity</a></li>
             <li><a href="#features">Features</a></li>
@@ -1032,7 +1061,10 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-logo gold-text">BASEGOLD</div>
+        <div class="footer-brand">
+            <img src="logo.png" alt="BaseGold" class="footer-logo-img">
+            <div class="footer-logo gold-text">BASEGOLD</div>
+        </div>
         <div class="social-links">
             <a href="https://dexscreener.com/base/0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank">DexScreener</a>
             <a href="https://basescan.org/address/0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank">BaseScan</a>
