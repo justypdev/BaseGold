@@ -1092,12 +1092,14 @@
                     <div class="stat-label">Tokens Burned 🔥</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value gold-text" id="scarcity-hero">2,100x</div>
-                    <div class="stat-label">Scarcer than BTC</div>
+                    <div class="stat-value" id="dex-liquidity">
+                        <span class="loading-dots">...</span>
+                    </div>
+                    <div class="stat-label">DEX Liquidity 💧</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">8</div>
-                    <div class="stat-label">DEX Listings</div>
+                    <div class="stat-value gold-text" id="scarcity-hero">2,100x</div>
+                    <div class="stat-label">Scarcer than BTC</div>
                 </div>
             </div>
 
@@ -1425,8 +1427,54 @@
         // Minimal ERC-20 ABI for totalSupply
         const ERC20_ABI = [
             "function totalSupply() view returns (uint256)",
-            "function decimals() view returns (uint8)"
+            "function decimals() view returns (uint8)",
+            "function balanceOf(address) view returns (uint256)"
         ];
+
+        // Known DEX pool addresses for BaseGold
+        const DEX_POOLS = [
+            // These will be fetched dynamically from DexScreener
+        ];
+
+        async function fetchDexLiquidity() {
+            try {
+                // Fetch pool data from DexScreener to get pool addresses
+                const response = await fetch('https://api.dexscreener.com/latest/dex/tokens/0x36b712A629095234F2196BbB000D1b96C12Ce78e');
+                const data = await response.json();
+                
+                if (!data.pairs || data.pairs.length === 0) {
+                    document.getElementById('dex-liquidity').textContent = '0';
+                    return;
+                }
+
+                const provider = new ethers.JsonRpcProvider(BASE_RPC);
+                const contract = new ethers.Contract(CONTRACT_ADDRESS, ERC20_ABI, provider);
+                
+                let totalLiquidity = 0n;
+                
+                // Query BG balance in each pool
+                for (const pair of data.pairs) {
+                    try {
+                        const poolAddress = pair.pairAddress;
+                        const balance = await contract.balanceOf(poolAddress);
+                        totalLiquidity += balance;
+                    } catch (e) {
+                        console.log('Error querying pool:', e);
+                    }
+                }
+                
+                // Format and display
+                const liquidityFormatted = Number(ethers.formatEther(totalLiquidity));
+                document.getElementById('dex-liquidity').textContent = liquidityFormatted.toLocaleString('en-US', {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                }) + ' BG';
+                
+            } catch (error) {
+                console.error('Error fetching DEX liquidity:', error);
+                document.getElementById('dex-liquidity').textContent = 'Error';
+            }
+        }
 
         async function fetchTotalSupply() {
             try {
@@ -1495,9 +1543,11 @@
 
         // Fetch on page load
         fetchTotalSupply();
+        fetchDexLiquidity();
         
         // Refresh every 30 seconds
         setInterval(fetchTotalSupply, 30000);
+        setInterval(fetchDexLiquidity, 60000); // Refresh liquidity every 60 seconds
 
         // APY Dashboard - Fetch pool data from DexScreener
         const DEX_LINKS = {
