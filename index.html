@@ -1059,7 +1059,6 @@
             <li><a href="#apy">APY</a></li>
             <li><a href="#buy">Buy</a></li>
             <li><a href="#roadmap">Roadmap</a></li>
-            <li><a href="team.html">Team</a></li>
         </ul>
         <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="buy-btn">Buy $BG</a>
     </nav>
@@ -1434,33 +1433,30 @@
 
         // Known DEX pool addresses for BaseGold
         const DEX_POOLS = [
-            // These will be fetched dynamically from DexScreener
+            "0x7cc79b882dfe590a81c447745d72be569e0b2a4b",  // Pool 1
+            "0x5e2b6a46ea72c6131d6cd5150eb11d3dd9c9ead2",  // Pool 2
+            "0xbdd5ec6263f92278ea5553731b22a2db0453cceb",  // Pool 3
+            "0x3488578c260882f691563a33adf49dd340ad81d2",  // Pool 4
+            "0xb7c567f80b8ce7faf50a093edc8860558f376a39",  // Pool 5
+            "0xf66c3a84be44eca21fa510f04fbd9bfe79da6d67",  // Pool 6
+            "0xc58aebcb9359ba2d437c0941a77690aa7e47636e",  // Pool 7
+            "0x79d4e0238774c1fdb4464279a4b847adeb38dd2c"   // Pool 8
         ];
 
         async function fetchDexLiquidity() {
             try {
-                // Fetch pool data from DexScreener to get pool addresses
-                const response = await fetch('https://api.dexscreener.com/latest/dex/tokens/0x36b712A629095234F2196BbB000D1b96C12Ce78e');
-                const data = await response.json();
-                
-                if (!data.pairs || data.pairs.length === 0) {
-                    document.getElementById('dex-liquidity').textContent = '0';
-                    return;
-                }
-
                 const provider = new ethers.JsonRpcProvider(BASE_RPC);
                 const contract = new ethers.Contract(CONTRACT_ADDRESS, ERC20_ABI, provider);
                 
                 let totalLiquidity = 0n;
                 
                 // Query BG balance in each pool
-                for (const pair of data.pairs) {
+                for (const poolAddress of DEX_POOLS) {
                     try {
-                        const poolAddress = pair.pairAddress;
                         const balance = await contract.balanceOf(poolAddress);
                         totalLiquidity += balance;
                     } catch (e) {
-                        console.log('Error querying pool:', e);
+                        console.log('Error querying pool:', poolAddress, e);
                     }
                 }
                 
