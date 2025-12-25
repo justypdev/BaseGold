@@ -636,6 +636,41 @@
             opacity: 0.6;
         }
 
+        /* Team CTA Section */
+        .team-cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, var(--black) 0%, var(--darker) 100%);
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .team-cta-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-cta-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .meet-team-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .meet-team-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
         /* Burn Section Styles */
         .burn-section {
             padding: 4rem 2rem;
@@ -1059,6 +1094,7 @@
             <li><a href="#apy">APY</a></li>
             <li><a href="#buy">Buy</a></li>
             <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="team.html">Team</a></li>
         </ul>
         <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="buy-btn">Buy $BG</a>
     </nav>
@@ -1287,6 +1323,15 @@
                     <p>Merchant payment integrations. NFT collection for holders. DeFi protocol integrations. CEX listings.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team CTA -->
+    <section class="team-cta-section">
+        <div class="team-cta-content">
+            <h2 class="gold-text">The Golden Council</h2>
+            <p>Meet the team behind BaseGold</p>
+            <a href="team.html" class="meet-team-btn">Meet the Team →</a>
         </div>
     </section>
 
