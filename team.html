@@ -422,6 +422,52 @@
             box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
         }
 
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .home-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--gold);
+            padding: 1rem 3rem;
+            border: 1px solid var(--gold);
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .home-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .stats-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .logo-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .team-grid {
@@ -714,20 +760,23 @@
                 <div class="team-stat-value">26</div>
                 <div class="team-stat-label">Council Members</div>
             </div>
+            <div class="team-stat logo-stat">
+                <img src="logov2.jpg" alt="BaseGold Logo" class="stats-logo">
+                <div class="team-stat-label">BaseGold</div>
+            </div>
             <div class="team-stat">
                 <div class="team-stat-value">100%</div>
                 <div class="team-stat-label">Diamond Hands</div>
-            </div>
-            <div class="team-stat">
-                <div class="team-stat-value">0</div>
-                <div class="team-stat-label">Rugs Pulled</div>
             </div>
         </div>
 
         <!-- CTA -->
         <div class="team-cta">
             <p>Want to join the Golden Council?</p>
-            <a href="https://t.me/basegold" target="_blank" class="join-btn">Join Our Telegram</a>
+            <div class="cta-buttons">
+                <a href="https://t.me/+CD3uVgD0EJZhODhh" target="_blank" class="join-btn">Join Our Telegram</a>
+                <a href="index.html" class="home-btn">← Back to Home</a>
+            </div>
         </div>
     </section>
     <!-- END TEAM SECTION -->
