@@ -1217,7 +1217,7 @@
     <!-- Buy Section -->
     <section class="scarcity" id="buy">
         <div class="section-header">
-            <h2 class="gold-text">Trade on 8 DEXs</h2>
+            <h2 class="gold-text">Trade on 7 DEXs</h2>
             <p>BaseGold is available across all major Base network exchanges.</p>
         </div>
 
@@ -1232,10 +1232,6 @@
             </a>
             <a href="https://aerodrome.finance/swap?from=eth&to=0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="dex-card">
                 <span>Aerodrome</span>
-                <span class="status">● Live</span>
-            </a>
-            <a href="https://baseswap.fi/swap" target="_blank" class="dex-card">
-                <span>BaseSwap</span>
                 <span class="status">● Live</span>
             </a>
             <a href="https://pancakeswap.finance/swap?chain=base&outputCurrency=0x36b712A629095234F2196BbB000D1b96C12Ce78e" target="_blank" class="dex-card">
@@ -1289,7 +1285,7 @@
                 </div>
                 <div class="roadmap-content">
                     <h4>Launch</h4>
-                    <p>Deploy smart contract on Base. Establish liquidity pools across 8 DEXs. Launch whitepaper and website.</p>
+                    <p>Deploy smart contract on Base. Establish liquidity pools across 7 DEXs. Launch whitepaper and website.</p>
                 </div>
             </div>
 
@@ -1375,7 +1371,7 @@
                 </div>
                 <div class="wp-item">
                     <h3>Tokenomics</h3>
-                    <p>Total supply of 10,000 BG with built-in deflationary burn mechanism. 80% team/development, 20% initial liquidity across 8 DEXs.</p>
+                    <p>Total supply of 10,000 BG with built-in deflationary burn mechanism. 80% team/development, 20% initial liquidity across 7 DEXs.</p>
                 </div>
                 <div class="wp-item">
                     <h3>Technology</h3>
@@ -1486,12 +1482,11 @@
         const DEX_POOLS = [
             "0x7cc79b882dfe590a81c447745d72be569e0b2a4b",  // Pool 1
             "0x5e2b6a46ea72c6131d6cd5150eb11d3dd9c9ead2",  // Pool 2
-            "0xbdd5ec6263f92278ea5553731b22a2db0453cceb",  // Pool 3
-            "0x3488578c260882f691563a33adf49dd340ad81d2",  // Pool 4
-            "0xb7c567f80b8ce7faf50a093edc8860558f376a39",  // Pool 5
-            "0xf66c3a84be44eca21fa510f04fbd9bfe79da6d67",  // Pool 6
-            "0xc58aebcb9359ba2d437c0941a77690aa7e47636e",  // Pool 7
-            "0x79d4e0238774c1fdb4464279a4b847adeb38dd2c"   // Pool 8
+            "0x3488578c260882f691563a33adf49dd340ad81d2",  // Pool 3
+            "0xb7c567f80b8ce7faf50a093edc8860558f376a39",  // Pool 4
+            "0xf66c3a84be44eca21fa510f04fbd9bfe79da6d67",  // Pool 5
+            "0xc58aebcb9359ba2d437c0941a77690aa7e47636e",  // Pool 6
+            "0x79d4e0238774c1fdb4464279a4b847adeb38dd2c"   // Pool 7
         ];
 
         async function fetchDexLiquidity() {
@@ -1609,7 +1604,6 @@
             'uniswap': 'https://app.uniswap.org/positions/create/v2?currencyA=ETH&currencyB=0x36b712A629095234F2196BbB000D1b96C12Ce78e&chain=base',
             'sushiswap': 'https://www.sushi.com/base/pool/v2/add?token0=NATIVE&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e',
             'aerodrome': 'https://aerodrome.finance/deposit?token0=eth&token1=0x36b712A629095234F2196BbB000D1b96C12Ce78e',
-            'baseswap': 'https://baseswap.fi/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
             'pancakeswap': 'https://pancakeswap.finance/liquidity?chain=base',
             'alienbase': 'https://app.alienbase.xyz/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
             'swapbased': 'https://swapbased.finance/#/add/ETH/0x36b712A629095234F2196BbB000D1b96C12Ce78e',
