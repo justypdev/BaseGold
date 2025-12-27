@@ -1619,6 +1619,7 @@
                     // Sort by APY (volume/liquidity ratio)
                     const pools = data.pairs
                         .filter(p => p.chainId === 'base')
+                        .filter(p => !p.dexId.toLowerCase().includes('baseswap')) // Exclude BaseSwap
                         .map(p => {
                             const liquidity = p.liquidity?.usd || 0;
                             const volume24h = p.volume?.h24 || 0;
